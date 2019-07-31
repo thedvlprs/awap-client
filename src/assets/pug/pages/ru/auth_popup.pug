@@ -1,0 +1,125 @@
+#authPage-popup-wrapper(v-if="app.currentLang === 'ru'")
+	#authPage-popup-wrapper-header
+		#authPage-popup-wrapper-header-title
+			span Что за 6-значный код?
+		
+		#authPage-popup-wrapper-header-close
+			button(@click="popup.shown = false")
+
+	#authPage-popup-wrapper-contents
+
+		transition(name="slide", mode="out-in", appear)
+
+			//- === === === === ===
+			//- Popup / STEP 1
+			//- === === === === ===
+
+			div(v-if="popup.step === 1", :key="'step1'")
+				p.
+					Вы можете использовать генерируемые 6-значные коды вместо обычного пароля для входа на сайт. Для этого вам нужно скачать приложение для генерации этих кодов. Выглядит оно примерно так:
+
+				.images
+					figure(style="max-width: 300px")
+						img(src="@/assets/images/pages/home/google-authenticator.png", alt="Google Authenticator")
+						figcaption Google Authenticator
+
+				p.
+					Такие приложения автоматически генерируют 6-значные коды каждые 30 секунд (на самом деле можно задавать другое время, но 30 секунд уже стало неким стандартом). Приложению при этом не нужно посылать запросы на сайт и оно может работать оффлайн.
+
+				hr
+
+				p.tip.
+					Для генерации 6-значных кодов скачайте на свой смартфон любое из этих приложений
+
+				.popup-otp-apps
+
+					//- === === === === ===
+					//- Google Authenticator
+					//- === === === === ===
+
+					.popup-otp-apps-item
+						.popup-otp-apps-item-image
+							img(src="@/assets/images/apps/google-authenticator.svg", alt="Google Auhenticator")
+
+						.popup-otp-apps-item-name
+							span Google Authenticator
+
+						.popup-otp-apps-item-link
+							a(href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2")
+								img(src="@/assets/images/google-play-badge.svg", alt="Download on Play Store")
+
+						.popup-otp-apps-item-link
+							a(href="https://apps.apple.com/us/app/google-authenticator/id388497605")
+								img(src="@/assets/images/app-store-badge.svg", alt="Download on App store")
+
+					//- === === === === ===
+					//- Microsoft authenticator
+					//- === === === === ===
+
+					.popup-otp-apps-item
+						.popup-otp-apps-item-image
+							img(src="@/assets/images/apps/microsoft-authenticator.png", alt="Microsoft Auhenticator")
+
+						.popup-otp-apps-item-name
+							span Microsoft Authenticator
+
+						.popup-otp-apps-item-link
+							a(href="https://play.google.com/store/apps/details?id=com.azure.authenticator")
+								img(src="@/assets/images/google-play-badge.svg", alt="Download on Play Store")
+
+						.popup-otp-apps-item-link
+							a(href="https://apps.apple.com/us/app/microsoft-authenticator/id983156458")
+								img(src="@/assets/images/app-store-badge.svg", alt="Download on App store")
+
+					//- === === === === ===
+					//- Lastpass authenticator
+					//- === === === === ===
+
+					.popup-otp-apps-item
+						.popup-otp-apps-item-image
+							img(src="@/assets/images/apps/lastpass-authenticator.webp", alt="LastPass Auhenticator")
+
+						.popup-otp-apps-item-name
+							span LastPass Authenticator
+
+						.popup-otp-apps-item-link
+							a(href="https://play.google.com/store/apps/details?id=com.lastpass.authenticator")
+								img(src="@/assets/images/google-play-badge.svg", alt="Download on Play Store")
+
+						.popup-otp-apps-item-link
+							a(href="https://apps.apple.com/us/app/lastpass-authenticator/id1079110004")
+								img(src="@/assets/images/app-store-badge.svg", alt="Download on App store")
+
+				p.tip.
+					После того, как вы скачали и установили приложение, нажмите кнопку "Дальше"
+
+			//- === === === === ===
+			//- Popup / STEP 2
+			//- === === === === ===
+
+			div(v-if="popup.step === 2", :key="'step2'")
+				p.
+					Введите имя пользователя, которое вы будете использовать для входа на сайт:
+
+				.form-field
+					input(type="text", placeholder="Введите ваш логин...", v-model="account.username", @input.prevent="validateUsername")
+
+				transition(name="form-result")
+					.form-result(v-show="form.result")
+						div {{form.result}}
+
+			//- === === === === ===
+			//- Popup / STEP 3
+			//- === === === === ===
+
+			div(v-if="popup.step === 3", :key="'step3'")
+				p.tip.
+					А теперь откройте приложение, которое вы установили на 1-ом шаге и найдите там скан QR-кода. Нашли? - Сканируйте:
+
+				.qrcode
+					qrcode(:value="keyuri", :options="{width: 200, margin: 0}")
+
+	#authPage-popup-wrapper-footer
+		transition(name="fade"): div(v-if="popup.step !== 1"): button.gray(@click="prevStep") Назад
+
+		transition(name="fade"): div: button(@click="nextStep", :disabled="popup.step === 2 && account.username.length < 4") Дальше

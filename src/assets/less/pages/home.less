@@ -1,0 +1,110 @@
+#homePage {
+	max-width: 940px;
+	margin: 100px auto;
+	padding: 0 25px;
+
+	@media(max-width: 1000px) {
+		margin: 50px auto 100px;
+	}
+
+	/* === === === === === */
+	/* Header
+	/* === === === === === */
+
+	header {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+
+		@media(max-width: 700px) {
+			flex-direction: column;
+		}
+
+		/* === === === === === */
+		/* Header left
+		/* === === === === === */
+
+		& > .left {
+			display: flex;
+			align-items: center;
+
+			/* === === === === === */
+			/* Header logo
+			/* === === === === === */
+
+			.logo {
+				flex-shrink: 0;
+				width: 75px;
+				height: 75px;
+				border-radius: 20%;
+				box-shadow:
+					0 10px 20px rgba(#000, .19),
+					0 6px 6px rgba(#000, .23);
+			}
+
+			/* === === === === === */
+			/* Header header
+			/* === === === === === */
+
+			h1 {
+				margin: 0;
+				margin-left: 35px;
+				color: @minorColor;
+				font: 900 24pt @majorFont;
+
+				@media(max-width: 400px) {
+					font-size: 18pt;
+				}
+			}
+		}
+
+		/* === === === === === */
+		/* Header right
+		/* === === === === === */
+
+		& > .right {
+
+			@media(max-width: 700px) {
+				margin-top: 50px;
+			}
+			
+			/* === === === === === */
+			/* Header buttons
+			/* === === === === === */
+
+			.buttons {
+				display: flex;
+				align-items: center;
+
+				button {
+					&:not(:first-child) {
+						margin-left: 10px;
+					}
+				}
+			}
+		}
+	}
+
+	/* === === === === === */
+	/* Main contents
+	/* === === === === === */
+
+	main {
+		margin: 70px auto;
+	}
+
+	/* === === === === === */
+	/* Footer
+	/* === === === === === */
+
+	footer {
+		display: flex;
+		justify-content: space-between;
+
+		& > div {
+			display: flex;
+			font: lighter 10pt @majorFont;
+			color: #888;
+		}
+	}
+}

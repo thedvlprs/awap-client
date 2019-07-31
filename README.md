@@ -1,4 +1,9 @@
-# awap-client
+# AWAP (client side)
+
+This is source code for my [AWAP Project](https://awap.pw).
+To see source code for AWAP API (Backend) visit [github.com/aleoheen/awap-server](https://github.com/aleoheen/awap-server)
+
+To change API URL, edit the `/src/assets/js/app.js` file.
 
 ## Project setup
 ```
@@ -13,16 +18,6 @@ yarn run serve
 ### Compiles and minifies for production
 ```
 yarn run build
-```
-
-### Run your tests
-```
-yarn run test
-```
-
-### Lints and fixes files
-```
-yarn run lint
 ```
 
 ### Customize configuration

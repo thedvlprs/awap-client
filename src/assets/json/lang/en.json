@@ -1,0 +1,46 @@
+{
+	"buttons": {
+		"register": "Register",
+		"signin": "Sign In",
+		"signout": "Sign Out"
+	},
+
+	"sourceCode": "Source Code",
+
+	"authPage": {
+
+		"title": {
+			"register": "Register a new account",
+			"signin": "Sign In your account"
+		},
+
+		"inputs": {
+
+			"username": {
+				"placeholder": "Username"
+			},
+
+			"code": {
+				"placeholder": "Your 6-digit code"
+			},
+
+			"results": {
+				"notFilled": "Please fill out all fields",
+				"invalidCode": "Please enter 6-digit code correctly",
+				"invalidUsername": "Username length may be between 4 and 15 symbols",
+				"userExists": "User with same username already exists. Please type another username",
+				"notAuthed": "Authentication failed",
+				"e400": "Check your 6-digit code and try again"
+			}
+
+		},
+
+		"authTips": {
+
+			"auth": "Already have an account?",
+			"register": "Don't have an account?"
+
+		}
+
+	}
+}

@@ -1,0 +1,126 @@
+#authPage-popup-wrapper(v-if="app.currentLang === 'en'")
+	#authPage-popup-wrapper-header
+		#authPage-popup-wrapper-header-title
+			span What is the 6-digit code?
+		
+		#authPage-popup-wrapper-header-close
+			button(@click="popup.shown = false")
+
+	#authPage-popup-wrapper-contents
+
+		transition(name="slide", mode="out-in", appear)
+
+			//- === === === === ===
+			//- Popup / STEP 1
+			//- === === === === ===
+
+			div(v-if="popup.step === 1", :key="'step1'")
+				p.
+					You can generate your 6-digit code (instead of regular password) in appropriate application on your smartphone (example <b>Google Authenticator</b>)
+
+				.images
+					figure(style="max-width: 300px")
+						img(src="@/assets/images/pages/home/google-authenticator.png", alt="Google Authenticator")
+						figcaption Google Authenticator
+
+				p.
+					Same applications generate a 6-digit code every 30 seconds. These apps can work offline and don't make any queries to the site.
+
+				hr
+
+				p.tip.
+					You need download one application that can generate 6-digit codes.
+
+				.popup-otp-apps
+
+					//- === === === === ===
+					//- Google Authenticator
+					//- === === === === ===
+
+					.popup-otp-apps-item
+						.popup-otp-apps-item-image
+							img(src="@/assets/images/apps/google-authenticator.svg", alt="Google Auhenticator")
+
+						.popup-otp-apps-item-name
+							span Google Authenticator
+
+						.popup-otp-apps-item-link
+							a(href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2")
+								img(src="@/assets/images/google-play-badge.svg", alt="Download on Play Store")
+
+						.popup-otp-apps-item-link
+							a(href="https://apps.apple.com/us/app/google-authenticator/id388497605")
+								img(src="@/assets/images/app-store-badge.svg", alt="Download on App store")
+
+					//- === === === === ===
+					//- Microsoft authenticator
+					//- === === === === ===
+
+					.popup-otp-apps-item
+						.popup-otp-apps-item-image
+							img(src="@/assets/images/apps/microsoft-authenticator.png", alt="Microsoft Auhenticator")
+
+						.popup-otp-apps-item-name
+							span Microsoft Authenticator
+
+						.popup-otp-apps-item-link
+							a(href="https://play.google.com/store/apps/details?id=com.azure.authenticator")
+								img(src="@/assets/images/google-play-badge.svg", alt="Download on Play Store")
+
+						.popup-otp-apps-item-link
+							a(href="https://apps.apple.com/us/app/microsoft-authenticator/id983156458")
+								img(src="@/assets/images/app-store-badge.svg", alt="Download on App store")
+
+					//- === === === === ===
+					//- Lastpass authenticator
+					//- === === === === ===
+
+					.popup-otp-apps-item
+						.popup-otp-apps-item-image
+							img(src="@/assets/images/apps/lastpass-authenticator.webp", alt="LastPass Auhenticator")
+
+						.popup-otp-apps-item-name
+							span LastPass Authenticator
+
+						.popup-otp-apps-item-link
+							a(href="https://play.google.com/store/apps/details?id=com.lastpass.authenticator")
+								img(src="@/assets/images/google-play-badge.svg", alt="Download on Play Store")
+
+						.popup-otp-apps-item-link
+							a(href="https://apps.apple.com/us/app/lastpass-authenticator/id1079110004")
+								img(src="@/assets/images/app-store-badge.svg", alt="Download on App store")
+
+				p.tip.
+					After you've installed any of these apps, click the "Next step" button
+
+			//- === === === === ===
+			//- Popup / STEP 2
+			//- === === === === ===
+
+			div(v-if="popup.step === 2", :key="'step2'")
+				p.
+					Enter your username which you'll use on this site.<br>We'll generate a QR Code by your username and you'll need to scan it.
+
+				.form-field
+					input(type="text", placeholder="Enter your username", v-model="account.username", @input.prevent="validateUsername")
+
+				transition(name="form-result")
+					.form-result(v-show="form.result")
+						div {{form.result}}
+
+			//- === === === === ===
+			//- Popup / STEP 3
+			//- === === === === ===
+
+			div(v-if="popup.step === 3", :key="'step3'")
+				p.tip.
+					Open your code-generating application and scan your QR Code
+
+				transition(name="fade", appear)
+					.qrcode(v-if="account.token")
+						qrcode(:value="account.OTPURI", :options="{width: 200, margin: 0}")
+
+	#authPage-popup-wrapper-footer
+		transition(name="fade"): div(v-if="popup.step !== 1"): button.gray(@click="prevStep") Prev step
+
+		transition(name="fade"): div: button(@click="nextStep", :disabled="popup.step === 2 && account.username.length < 4") Next step
