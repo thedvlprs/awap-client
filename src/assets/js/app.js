@@ -83,10 +83,12 @@ export default {
 		/* Detect browser language
 		/* === === === === === */
 
-		let lang = navigator.language && navigator.language.match(/\w+/)[0];
+		if(!db.get('lang').value()) {
+			let lang = navigator.language && navigator.language.match(/\w+/)[0];
 
-		if(!['en', 'ru'].includes(lang)) lang = 'en';
+			if(!['en', 'ru'].includes(lang)) lang = 'en';
 
-		db.set('lang', lang).write();
+			db.set('lang', lang).write();
+		}
 	}
 }

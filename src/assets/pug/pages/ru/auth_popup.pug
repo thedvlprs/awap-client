@@ -116,8 +116,9 @@
 				p.tip.
 					А теперь откройте приложение, которое вы установили на 1-ом шаге и найдите там скан QR-кода. Нашли? - Сканируйте:
 
-				.qrcode
-					qrcode(:value="keyuri", :options="{width: 200, margin: 0}")
+				transition(name="fade", appear)
+					.qrcode(v-if="account.token")
+						qrcode(:value="account.OTPURI", :options="{width: 200, margin: 0}")
 
 	#authPage-popup-wrapper-footer
 		transition(name="fade"): div(v-if="popup.step !== 1"): button.gray(@click="prevStep") Назад

@@ -9,7 +9,7 @@
 		//- === === === === ===
 
 		#language-button
-			button.transparent(@click="currentLang = currentLang === 'en' ? 'ru' : 'en'") {{currentLang === 'en' ? 'ru' : 'en'}}
+			button.transparent(tabindex="0", @click="currentLang = currentLang === 'en' ? 'ru' : 'en'") {{currentLang === 'en' ? 'ru' : 'en'}}
 
 </template>
 
