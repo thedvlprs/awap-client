@@ -1,21 +1,16 @@
 .wrapper(v-if="app.currentLang === 'ru'")
 	.welcome Привет, {{user.displayName}}!
 
-	.created С нами с {{user.regTS | toPrettyDate}}
+	.created Зарегистрирован {{user.regTS | toPrettyDate}}
 
 	p.
-		Это ваш аккаунт в системе AWAP! Теперь вы можете входить на этот сайт при помощи вашего логина и 6-значного кода из приложения.
+		Это ваш аккаунт в системе AWAP! Теперь, чтобы войти в свой аккаунт еще раз, вам достаточно ввести свои логин и код из приложения в соответствующей форме на сайте. Никаких паролей нет. Ваш аккаунт в полной безопасности!
 
 	p.
 		Если вы веб-разработчик, вы можете перевести все свои сайты на авторизацию без пароля. Для этого исследуйте <a href="https://github.com/aleoheen/awap-client">исходный код</a> нашего проекта.
 
-	hr
-
-	p.tip.
-		Вы можете поддержать разработчика проекта AWAP:
-
-	div
-		iframe(src="https://money.yandex.ru/quickpay/shop-widget?writer=seller&targets=%D0%9F%D0%BE%D0%B6%D0%B5%D1%80%D1%82%D0%B2%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D1%83%20AWAP.pw&targets-hint=&default-sum=1000&button-text=14&payment-type-choice=on&comment=on&hint=&successURL=&quickpay=shop&account=410019999336983", width="100%", height="301", frameborder="0", allowtransparency="true", scrolling="no")
+	p.
+		Вы так же можете ознакомиться с открытым REST API нашего проекта и поэксперентировать. Документация по API: <a href="https://api.awap.pw">api.awap.pw</a>
 
 	hr
 

@@ -102,7 +102,7 @@
 					Enter your username which you'll use on this site.<br>We'll generate a QR Code by your username and you'll need to scan it.
 
 				.form-field
-					input(type="text", placeholder="Enter your username", v-model="account.username", @input.prevent="validateUsername")
+					input(type="text", placeholder="Enter your username", v-model="account.username", @input.prevent="validateUsername",  @keyup.13="nextStep")
 
 				transition(name="form-result")
 					.form-result(v-show="form.result")

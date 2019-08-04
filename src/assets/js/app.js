@@ -25,7 +25,7 @@ export default {
 	data() {
 		return {
 			currentLang: db.get('lang').value() || 'en',
-			baseURL: 'https://api.awap.pw',
+			baseURL: process.env.NODE_ENV === 'production' ? 'https://api.awap.pw' : 'http://192.168.43.116:8002',
 			db
 		}
 	},
@@ -88,7 +88,7 @@ export default {
 
 			if(!['en', 'ru'].includes(lang)) lang = 'en';
 
-			db.set('lang', lang).write();
+			this.currentLang = lang;
 		}
 	}
 }
